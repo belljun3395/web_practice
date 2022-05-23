@@ -44,7 +44,7 @@ app.use(express.static(path.join(__dirname, '/src/public')));
 app.use(session({
   resave : false,
   saveUninitialized : false,
-  secret : process.env.SESSION_SECRET,
+  secret : "sessionSecret",
   cookie : {
     httpOnly : true,
     secure : false,
