@@ -1,0 +1,22 @@
+{
+    "background_color": "#ffffff",
+    "description": "practice",
+    "dir": "ltr",
+    "display": "standalone",
+    "name": "web",
+    "orientation": "any",
+    "scope": "/",
+    "short_name": "web",
+    "start_url": "/",
+    "theme_color": "#ffffff",
+    "categories": [],
+    "screenshots": [],
+    "icons": [
+      {
+        "src": "/assets/img/icon-192x192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      }
+    ],
+    "shortcuts": []
+  }
