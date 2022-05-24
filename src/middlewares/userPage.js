@@ -17,6 +17,8 @@ exports.userGet = async (req,res,next) => {
 
 exports.userGetEdit = async (req,res,next) => {
     user = req.params.user;
+    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+    console.log(user)
     userIdData = await User.findOne({where : {email : user}})
     contentData = await Data.findAll({where : {UserId : userIdData.id}});
     temp = JSON.stringify(contentData)
