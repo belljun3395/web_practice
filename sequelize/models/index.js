@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
 const env = process.env.NODE_ENV || 'development';
-const config = require('../config/config.json')["production"];
+const config = require('../config/config.json')[env];
 const User =require('./User')
 const Data =require('./Data')
 const Icon =require('./Icon')
@@ -27,6 +27,5 @@ Icon.init(sequelize);
 User.associate(db);
 Data.associate(db);
 Icon.associate(db);
-
 
 module.exports = db;
