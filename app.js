@@ -74,9 +74,12 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.listen(app.get('httpPort'), () => {
-  console.log(app.get('httpPort'), '번 포트에서 대기중');
+app.listen(process.env.PORT, () => {
+  console.log(process.env.PORT, '번 포트에서 대기중');
 });
+// app.listen(app.get('httpPort'), () => {
+//   console.log(app.get('httpPort'), '번 포트에서 대기중');
+// });
 
 // https.createServer(https_options, app).listen(app.get('httpsPort'), function() {
 //   console.log(app.get('httpsPort'), '서버 가동');
