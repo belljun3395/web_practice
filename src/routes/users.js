@@ -2,7 +2,7 @@ var express = require('express'),
     router = express.Router();
 
 var {authenticate, isLoggedIn, join}  = require('../middlewares/verify.js');
-const { userGetEdit, userPostEdit, userPostRemove } = require('../middlewares/userPage');
+const { joinTest, userGetEdit, userPostEdit, userPostRemove } = require('../middlewares/userPage');
 
 
 router.get('/login', function(req,res) {
@@ -16,6 +16,8 @@ router.get('/join', function(req,res) {
 router.get('/edit/:user',isLoggedIn , userGetEdit)
 
 
+
+router.post('/test', joinTest)
 
 router.post('/join', join )
 

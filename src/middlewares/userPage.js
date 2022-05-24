@@ -17,8 +17,6 @@ exports.userGet = async (req,res,next) => {
 
 exports.userGetEdit = async (req,res,next) => {
     user = req.params.user;
-    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-    console.log(user)
     userIdData = await User.findOne({where : {email : user}})
     contentData = await Data.findAll({where : {UserId : userIdData.id}});
     temp = JSON.stringify(contentData)
@@ -54,4 +52,25 @@ exports.userPostRemove = async (req,res) => {
     }
    
     res.redirect(`/${user}`);
+}
+
+exports.joinTest = async (req,res) =>{
+        contentData =  await User.findAll(
+            {
+              include: [
+            { 
+                model: Data,
+                required : true,
+                as :"UserData"
+            },
+                { 
+                    model : Icon,
+                }
+              ]
+            }
+        );
+        res.send(contentData)
+
+    
+    
 }
