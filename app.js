@@ -77,6 +77,8 @@ app.use(function(err, req, res, next) {
 app.listen(process.env.PORT, () => {
   console.log(process.env.PORT, '번 포트에서 대기중');
 });
+
+// for local
 // app.listen(app.get('httpPort'), () => {
 //   console.log(app.get('httpPort'), '번 포트에서 대기중');
 // });
