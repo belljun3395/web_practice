@@ -8,12 +8,20 @@ html
         style.
             Body {
             font-family: Calibri, Helvetica, sans-serif;
-            background-color: pink;
+            background-color: #bd5d38;
             }
             button {
-            background-color: #4CAF50;
+            background-color: #bd5d38;
             width: 100%;
-            color: orange;
+            color: black;
+            padding: 15px;
+            margin: 10px 0px;
+            border: none;
+            cursor: pointer;
+            }
+            #join {
+            width: 100%;
+            color: black;
             padding: 15px;
             margin: 10px 0px;
             border: none;
@@ -27,25 +35,20 @@ html
             margin: 8px 0;
             padding: 12px 20px;
             display: inline-block;
-            border: 2px solid green;
+            border: 2px solid #bd5d38;
             box-sizing: border-box;
             }
             button:hover {
             opacity: 0.7;
             }
-            .cancelbtn {
-            width: auto;
-            padding: 10px 18px;
-            margin: 10px 5px;
-            }
             .container {
             padding: 25px;
-            background-color: lightblue;
+            background-color: #f8f9fa;
             }
     |     
     body
         center
-            h1  Student Login Form 
+            h1  Login 
         |    
         |     
         form(action="/users/login" method="POST")
@@ -64,11 +67,5 @@ html
                 |             
                 button(type='submit') Login
                 |    
-                |             
-                input(type='checkbox', checked='checked')
-                |  Remember me   
-                |             
-                button.cancelbtn(type='button')  Cancel
-                |    
-                |             Forgot 
-                a(href='#')  password? 
+                |              
+                a#join(href='/users/join')  Join? 
