@@ -70,7 +70,4 @@ exports.joinTest = async (req,res) =>{
             }
         );
         res.send(contentData)
-
-    
-    
 }
