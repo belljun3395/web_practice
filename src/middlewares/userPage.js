@@ -2,6 +2,10 @@ const User = require('../../sequelize/models/User');
 const Data = require('../../sequelize/models/Data');
 const Icon = require('../../sequelize/models/Icon');
 
+var { schema, rootValue, source } = require('../../sequelize/models/_graphql')
+var { graphql } = require('graphql');
+
+
 
 exports.userGet = async (req,res,next) => {
     user = req.params.user;
@@ -67,7 +71,12 @@ exports.joinTest = async (req,res) =>{
                     model : Icon,
                 }
               ]
-            }
+            },
         );
         res.send(contentData)
+}
+
+exports.graphqlTest = async (req, res) => {
+  var result =  await graphql({ schema,source,rootValue })
+  res.send(result)
 }

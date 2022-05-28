@@ -1,3 +1,4 @@
+const { set } = require('express/lib/application');
 const { DataTypes, Sequelize } = require('sequelize');
 
 module.exports = class Icon extends Sequelize.Model {
@@ -7,7 +8,7 @@ module.exports = class Icon extends Sequelize.Model {
         type: DataTypes.STRING(45),
         allowNull: true,
         unique: false,
-        defaultValue : '0'
+        defaultValue : '0',
       },
       github: {
         type: DataTypes.STRING(45),
