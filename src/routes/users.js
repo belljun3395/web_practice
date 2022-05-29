@@ -19,7 +19,7 @@ router.get('/join', function(req,res) {
     res.render("join");
 })
 
-router.get('/edit/:user',isLoggedIn , userGetEdit)
+router.get('/edit/:user' , userGetEdit)
 
 
 

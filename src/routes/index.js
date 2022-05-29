@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
   res.render('index');
 });
 
-router.get('/:user', isLoggedIn, userGet)
+router.get('/:user', userGet)
 
 
 module.exports = router;

@@ -4,6 +4,7 @@ const Icon = require('../../sequelize/models/Icon');
 
 var { schema, rootValue, source } = require('../../sequelize/models/_graphql')
 var { graphql } = require('graphql');
+const { redirect } = require('express/lib/response');
 
 
 
@@ -36,12 +37,15 @@ exports.userPostEdit = async (req,res) => {
     input = req.body;
     try {
         userData = await User.findOne({where : {email : user}});
-        await Data.create({ Etitle : input.Etitle ,Esubtitle : input.Esubtitle ,Ecomment : input.Ecomment ,Edtitle : input.Edtitle ,Edsubtitle : input.Edsubtitle ,Edcomment : input.Edcomment ,Ilist : input.Ilist ,AClist : input.AClist, UserId : userData.id});
-        await Icon.update({ linkedin : input.linkedin, github : input.github, twitter : input.twitter, facebook : input.facebook}, { where : {UserId : userData.id }} );
+        if(input.Etitle== '' && input.Esubtitle == '' && input.Ecomment == '' && input.Edtitle == '' && input.Edsubtitle == '' && input.Edcomment == '' && input.Ilist == '' && input.AClist == '')  {
+            res.redirect(`/${user}`);
+        } else {
+            await Data.create({ Etitle : input.Etitle ,Esubtitle : input.Esubtitle ,Ecomment : input.Ecomment ,Edtitle : input.Edtitle ,Edsubtitle : input.Edsubtitle ,Edcomment : input.Edcomment ,Ilist : input.Ilist ,AClist : input.AClist, UserId : userData.id});
+        }
+        await Icon.update({ linkedin : input.linkedin || "0", github : input.github || "0", twitter : input.twitter || "0", facebook : input.facebook || "0"}, { where : {UserId : userData.id }} );
     } catch(error) {
         console.log(error)
     }
-   
     res.redirect(`/${user}`);
 }
 
