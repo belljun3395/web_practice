@@ -10,7 +10,7 @@ exports.schema = buildSchema(`
   type Query {
     user(id : Int) : User
     data(id : Int) : Data
-    dataTest(id : Int) : Data
+    dataArray(id : Int) : [Data]
     test : String
   }
   type User {
@@ -18,10 +18,7 @@ exports.schema = buildSchema(`
     email : String,
     password : String,
     Given_name : String,
-    Last_name : String,
-    createdAt : String,
-    updatedAt : String,
-    deletedAt : String
+    Last_name : String
   }
   type Data {
     id: ID,
@@ -32,10 +29,7 @@ exports.schema = buildSchema(`
     Edsubtitle : String,
     Edcomment : String,
     Ilist : String,
-    AClist : String
-    createdAt : String,
-    updatedAt : String,
-    deletedAt : String,
+    AClist : String,
     UserId : Int
   }
 `);
@@ -44,7 +38,7 @@ exports.schema = buildSchema(`
 exports.rootValue = {
     user : async (user) => { return await User.findOne({where : {id : user.id}}) },
     data : async (user) => { return (await Data.findAll({where : {UserId : user.id}}))[0] },
-    dataTest : async (user) => {var data = await Data.findAll({where : {UserId : user.id}}); data.forEach((el) => {return el.dataValues}) },
+    dataArray : async (user) => {var data = await Data.findAll({where : {UserId : user.id}}); return data },
     test : () => { return "hello"}
   };
 

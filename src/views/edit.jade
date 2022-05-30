@@ -50,7 +50,7 @@ html(lang='en')
                         a.nav-link.js-scroll-trigger(href='#awards') Awards
         // Page Content
         .container-fluid.p-0
-        form(action='/users/edit/kjj3395', method="POST")
+        form(action='/users/edit/#{userData.user.email}', method="POST")
             // About
             section#about.resume-section
                 .resume-section-content

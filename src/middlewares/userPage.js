@@ -10,26 +10,34 @@ const { redirect } = require('express/lib/response');
 
 exports.userGet = async (req,res,next) => {
     user = req.params.user;
-    userIdData = await User.findOne({where : {email : user}});
-    contentData = await Data.findAll({where : {UserId : userIdData.id}});
-    iconData = await Icon.findOne({where : {UserId : userIdData.id}});
-    iconArrayData = Object.entries(iconData.dataValues);
-    temp = JSON.stringify(contentData);
-    contentData = JSON.parse(temp);
-    userData = { user : userIdData , contents : contentData, icons : iconArrayData};
-    res.render('user', userData);
+    try{
+        userData = await User.findOne({where : {email : user}});
+        contentData = await userData.getData();
+        iconData = await userData.getIcon();
+        iconArrayData = Object.entries(iconData.dataValues);
+        temp = JSON.stringify(contentData);
+        contentData = JSON.parse(temp);
+        userData = { user : userData , contents : contentData, icons : iconArrayData};
+        res.render('user', userData);
+    } catch(e) {
+        console.log(e)
+    }
 }
 
 exports.userGetEdit = async (req,res,next) => {
     user = req.params.user;
-    userIdData = await User.findOne({where : {email : user}})
-    contentData = await Data.findAll({where : {UserId : userIdData.id}});
-    temp = JSON.stringify(contentData)
-    contentData = JSON.parse(temp)
-    iconData =await Icon.findOne({where : {UserId : userIdData.id}})
-    iconArrayData = Object.entries(iconData.dataValues)
-    userData = { user :userIdData , contents : contentData, icons : iconArrayData}
-    res.render('edit', userData)
+    try {
+        userData = await User.findOne({where : {email : user}});
+        contentData = await userData.getData();
+        iconData = await userData.getIcon();
+        iconArrayData = Object.entries(iconData.dataValues);
+        temp = JSON.stringify(contentData);
+        contentData = JSON.parse(temp);
+        userData = { user : userData , contents : contentData, icons : iconArrayData};
+        res.render('edit', userData)
+    } catch (e) {
+        console.log(e)
+    }
 }
 
 exports.userPostEdit = async (req,res) => {
