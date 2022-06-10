@@ -18,7 +18,8 @@ exports.authenticate = (req, res, next) => {
           console.error(loginError);
           return next(loginError);
         };
-        return res.redirect(`/${req.user.email}`);
+        return res.send("this is test")
+        // return res.redirect(`/${req.user.email}`);
       });
     })(req, res, next);
 };
