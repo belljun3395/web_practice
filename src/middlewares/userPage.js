@@ -48,9 +48,11 @@ exports.userPostEdit = async (req,res) => {
         if(input.Etitle== '' && input.Esubtitle == '' && input.Ecomment == '' && input.Edtitle == '' && input.Edsubtitle == '' && input.Edcomment == '' && input.Ilist == '' && input.AClist == '')  {
             res.redirect(`/${user}`);
         } else {
-            await Data.create({ Etitle : input.Etitle ,Esubtitle : input.Esubtitle ,Ecomment : input.Ecomment ,Edtitle : input.Edtitle ,Edsubtitle : input.Edsubtitle ,Edcomment : input.Edcomment ,Ilist : input.Ilist ,AClist : input.AClist, UserId : userData.id});
+            data = await Data.create({ Etitle : input.Etitle ,Esubtitle : input.Esubtitle ,Ecomment : input.Ecomment ,Edtitle : input.Edtitle ,Edsubtitle : input.Edsubtitle ,Edcomment : input.Edcomment ,Ilist : input.Ilist ,AClist : input.AClist});
+            userData.addData(data);
         }
         await Icon.update({ linkedin : input.linkedin || "0", github : input.github || "0", twitter : input.twitter || "0", facebook : input.facebook || "0"}, { where : {UserId : userData.id }} );
+        res.redirect(`/${user}`);
     } catch(error) {
         console.log(error)
     }
