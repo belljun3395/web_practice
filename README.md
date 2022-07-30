@@ -1,2 +1,2 @@
 # web_practice
-web 엽습을 위한 리포지토리
+Nodejs를 활용한 web 구현 엽습을 위한 리포지토리
